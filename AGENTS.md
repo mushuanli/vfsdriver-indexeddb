@@ -51,3 +51,7 @@ const { manager } = await createVFS({ rootBackend: backend });
 ```bash
 pnpm --filter @itookit/vfsdriver-indexeddb test   # vitest run (fake-indexeddb)
 ```
+
+## 宿主原生事务端口
+
+`storageAccess()` 提供通用原生 IndexedDB 事务能力。SeqFile 复用既有 nodes/records，不增加同步表。驱动仅依赖 vfs-core；同步控制状态、快照、条件应用与 Web Locks 位于宿主接入包 `@itookit/sync-adapters`。事务调用方负责等待完成，事务内不得执行网络或异步摘要计算。

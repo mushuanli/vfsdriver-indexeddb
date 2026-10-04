@@ -1,3 +1,4 @@
+import type { IndexedDBStorageAccess } from './storage-access';
 /**
  * @file vfsdriver-indexeddb/src/idb-backend.ts
  * v4.1: Path-based IStorageBackend using a single IDB object store.
@@ -97,6 +98,10 @@ export class IndexedDBBackend implements IStorageBackend {
     async close(): Promise<void> {
         this.db?.close();
         this.db = null;
+    }
+
+    storageAccess(): IndexedDBStorageAccess {
+        return { identity: this.dbName, transaction: (stores, mode, options) => this._db().transaction(stores, mode, options) };
     }
 
     private _db(): IDBDatabase {
@@ -757,7 +762,7 @@ function toFSNode(entry: NodeEntry): FSNode {
 
 /**
  * Open (and initialize) an IndexedDB storage backend.
- * Symmetric with `openLocalFSBackend` from @itookit/vfsdriver-localfs.
+ * Symmetric with `openLocalFSBackend` from @itookit/vfsdriver-local.
  */
 export async function openIndexedDBBackend(options?: IndexedDBBackendOptions): Promise<IndexedDBBackend> {
     const backend = new IndexedDBBackend(options);
