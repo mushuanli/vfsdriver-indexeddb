@@ -8,7 +8,7 @@ Its only runtime dependency is `@itookit/vfs-core`.
 ## Development
 
 ```sh
-git clone --recurse-submodules git@github.com:mushuanli/vfsdriver-indexeddb.git
+git clone git@github.com:mushuanli/vfsdriver-indexeddb.git
 cd vfsdriver-indexeddb
 pnpm install --frozen-lockfile
 pnpm typecheck
@@ -17,9 +17,11 @@ pnpm build
 pnpm pack
 ```
 
-`vendor/vfs-core` pins the core source used for independent development.
-Inside itookit, the outer workspace resolves its own `packages/vfs-core` instead.
-Packed releases contain only the driver and reference core as an npm dependency.
+Development and packed releases both depend on the npm `latest` tag of `@itookit/vfs-core`.
+No core source checkout or Git submodule is required. The lockfile records the exact
+version used for development and CI; frozen installs do not automatically upgrade it.
+To refresh core, run `pnpm update @itookit/vfs-core`, then run typechecking, tests and
+the build. The `latest` tag can also advance to a new major version.
 
 ## Usage
 
@@ -40,10 +42,10 @@ request persistent storage when appropriate.
 
 ## itookit integration
 
-The package is a Git submodule. After cloning itookit:
+itookit installs the driver and core from npm. For example:
 
 ```sh
-git submodule update --init --recursive packages/vfs-core packages/vfsdriver-indexeddb
+pnpm add @itookit/vfsdriver-indexeddb @itookit/vfs-core --save-exact
 ```
 
 Database schema and driver implementation notes are in [AGENTS.md](AGENTS.md).

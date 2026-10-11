@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@itookit/vfs-core':
-        specifier: workspace:*
-        version: link:vendor/vfs-core
+        specifier: latest
+        version: 5.3.1
     devDependencies:
       fake-indexeddb:
         specifier: ^6.0.0
@@ -23,25 +23,6 @@ importers:
         version: 5.9.3
       vitest:
         specifier: ^3.2.1
-        version: 3.2.7(yaml@2.9.1)
-
-  vendor/vfs-core:
-    dependencies:
-      ignore:
-        specifier: 5.3.2
-        version: 5.3.2
-      yaml:
-        specifier: ^2.8.2
-        version: 2.9.1
-    devDependencies:
-      tsup:
-        specifier: ^8.5.1
-        version: 8.5.1(postcss@8.5.28)(typescript@5.9.3)(yaml@2.9.1)
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      vitest:
-        specifier: ^3.2.4
         version: 3.2.7(yaml@2.9.1)
 
 packages:
@@ -357,6 +338,9 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@itookit/vfs-core@5.3.1':
+    resolution: {integrity: sha512-ojQWg4TArlWtLKqPlUza15pYSvdAk7rJLLvR1TpQ44seXdDjd/xH1PX2BHkjKqV+O7c4MejXFQyMXMR/E8Idng==}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -1069,6 +1053,11 @@ snapshots:
 
   '@esbuild/win32-x64@0.28.2':
     optional: true
+
+  '@itookit/vfs-core@5.3.1':
+    dependencies:
+      ignore: 5.3.2
+      yaml: 2.9.1
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
