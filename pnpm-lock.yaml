@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@itookit/vfs-core':
-        specifier: latest
+        specifier: 5.3.1
         version: 5.3.1
     devDependencies:
       fake-indexeddb:
